@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 class Game {
-    public static void game(String[] args) {
+    public static void game() {
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
         int n = rand.nextInt(99) + 1;
