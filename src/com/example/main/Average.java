@@ -5,7 +5,7 @@ import java.util.Scanner;
 class Average {
     private Scanner input = new Scanner(System.in);
 
-    static void average() {
+    void average() {
         Average avg = new Average();
 
         int number = avg.inputNumber();
@@ -19,15 +19,34 @@ class Average {
     }
 
     private int inputNumber() {
+        Scanner sc = new Scanner(System.in);
+        int number;
         System.out.print("Tomb elemeinek szama: ");
-        return Integer.parseInt(input.nextLine());
+
+        while (true) {
+            try {
+                number = Integer.parseInt(sc.nextLine());
+                break;
+            } catch (NumberFormatException nfe) {
+                System.out.print("Szamot irj: ");
+            }
+        }
+        return number;
     }
 
     private void inputArray(int array[], int number) {
         System.out.println("Tomb elemei:");
         for (int i = 0; i < number; i++) {
             System.out.print(i + ". ");
-            array[i] = Integer.parseInt(input.nextLine());
+
+            while (true) {
+                try {
+                    array[i] = Integer.parseInt(input.nextLine());
+                    break;
+                } catch (NumberFormatException nfe) {
+                    System.out.print("Szamot irj: ");
+                }
+            }
         }
     }
 

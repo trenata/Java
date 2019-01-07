@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 class Game {
-    static void game() {
+    void game() {
         Game game = new Game();
         Random rand = new Random();
 

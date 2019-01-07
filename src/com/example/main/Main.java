@@ -5,8 +5,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
+
+        Game gm = new Game();
+        Average avg = new Average();
+        Palindrome pal = new Palindrome();
+        Hangman hm = new Hangman();
+
         int choice;
-        System.out.println("0. Kilepes\n1. Hello World!\n2. Jatek\n3. Tomb eleminek atlaga\n4. Palindrom-e egy szo?");
+
+        System.out.println("0. Kilepes\n1. Hello World!\n2. Jatek\n3. Tomb eleminek atlaga\n4. Palindrom-e egy szo?\n5. Akasztofa");
 
         do {
             choice = main.inputChoice();
@@ -16,13 +23,16 @@ public class Main {
                     System.out.println("\nHello, World!");
                     break;
                 case 2:
-                    Game.game();
+                    gm.game();
                     break;
                 case 3:
-                    Average.average();
+                    avg.average();
                     break;
                 case 4:
-                    Palindrome.palindrome();
+                    pal.palindrome();
+                    break;
+                case 5:
+                    hm.hangman();
                     break;
             }
         } while (choice != 0);
@@ -40,7 +50,7 @@ public class Main {
                 } catch (NumberFormatException nfe) {
                     System.out.print("Szamot irj: ");
                 }
-        } while (choice < 0 || choice > 4);
+        } while (choice < 0 || choice > 5);
         return choice;
     }
 }

@@ -3,7 +3,7 @@ package com.example.main;
 import java.util.Scanner;
 
 class Palindrome {
-    static void palindrome() {
+    void palindrome() {
         Palindrome pal = new Palindrome();
 
         String word = pal.inputWord();
