@@ -78,7 +78,8 @@ class Hangman {
     }
 
     private void failedAttempt(int wrongAnswrs) {
-        Stickfigures.stickfigures(wrongAnswrs);
+        Stickfigures sf = new Stickfigures();
+        sf.stickfigures(wrongAnswrs);
 
         if (wrongAnswrs < 5) {
             System.out.println("Rossz tipp. Meg " + (5 - wrongAnswrs) + "x tippelhetsz rosszul.");

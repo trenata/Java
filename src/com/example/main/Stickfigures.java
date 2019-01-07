@@ -1,7 +1,7 @@
 package com.example.main;
 
 class Stickfigures {
-    static void stickfigures(int wrongAnswers) {
+    void stickfigures(int wrongAnswers) {
         Stickfigures sf = new Stickfigures();
 
         switch (wrongAnswers) {
