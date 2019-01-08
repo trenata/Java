@@ -1,27 +1,25 @@
 package com.example.main;
 
 class Stickfigures {
-    void stickfigures(int wrongAnswers) {
-        Stickfigures sf = new Stickfigures();
-
+    Stickfigures(int wrongAnswers) {
         switch (wrongAnswers) {
             case 0:
-                sf.head();
+                head();
                 break;
             case 1:
-                sf.head();
+                head();
                 break;
             case 2:
-                sf.face();
+                face();
                 break;
             case 3:
-                sf.body();
+                body();
                 break;
             case 4:
-                sf.hands();
+                hands();
                 break;
             case 5:
-                sf.legs();
+                legs();
                 break;
         }
     }

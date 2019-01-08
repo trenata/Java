@@ -3,44 +3,41 @@ package com.example.main;
 import java.util.Scanner;
 
 public class Main {
+    private static int choice;
+
     public static void main(String[] args) {
         Main main = new Main();
-
-        Game gm = new Game();
-        Average avg = new Average();
-        Palindrome pal = new Palindrome();
-        Hangman hm = new Hangman();
-
-        int choice;
 
         System.out.println("0. Kilepes\n1. Hello World!\n2. Jatek\n3. Tomb eleminek atlaga\n4. Palindrom-e egy szo?\n5. Akasztofa");
 
         do {
-            choice = main.inputChoice();
-
-            switch (choice) {
-                case 1:
-                    System.out.println("\nHello, World!");
-                    break;
-                case 2:
-                    gm.game();
-                    break;
-                case 3:
-                    avg.average();
-                    break;
-                case 4:
-                    pal.palindrome();
-                    break;
-                case 5:
-                    hm.hangman();
-                    break;
-            }
+            main.inputChoice();
+            main.switchCase();
         } while (choice != 0);
     }
 
-    private int inputChoice() {
+    private void switchCase() {
+        switch (choice) {
+            case 1:
+                System.out.println("\nHello, World!");
+                break;
+            case 2:
+                new Game();
+                break;
+            case 3:
+                new Average();
+                break;
+            case 4:
+                new Palindrome();
+                break;
+            case 5:
+                new Hangman();
+                break;
+        }
+    }
+
+    private void inputChoice() {
         Scanner input = new Scanner(System.in);
-        int choice;
         do {
             System.out.print("\nValassz: ");
             while (true)
@@ -51,6 +48,5 @@ public class Main {
                     System.out.print("Szamot irj: ");
                 }
         } while (choice < 0 || choice > 5);
-        return choice;
     }
 }

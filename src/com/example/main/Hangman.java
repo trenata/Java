@@ -5,36 +5,36 @@ import java.util.Scanner;
 
 
 class Hangman {
-    void hangman() {
-        Hangman hg = new Hangman();
-        String answer = hg.randomWord();
-        String shownWord = hg.wordLength(answer);
+    private String answer, shownWord = "";
 
-        char yourGuess;
-        int wrongAnswers = 0;
-        boolean win = false;
+    private char yourGuess;
+    private int wrongAnswers = 0;
+    private boolean win = false;
+
+    Hangman() {
+        randomWord();
+        wordLength();
 
         System.out.println("AKASZTOFA! Talald ki milyen 'szora' gondoltam. 5 eleted van.\n");
-        hg.printShownWord(shownWord);
-
+        printShownWord();
 
         while (!win && wrongAnswers < 5) {
-            yourGuess = hg.inputGuess();
+            inputGuess();
 
             if (answer.indexOf(yourGuess) >= 0) {
-                shownWord = hg.correctGuess(answer, yourGuess, shownWord);
-                hg.printShownWord(shownWord);
+                correctGuess();
+                printShownWord();
 
                 if (shownWord.equals(answer)) {
                     win = true;
                 }
             } else {
                 wrongAnswers++;
-                hg.failedAttempt(wrongAnswers);
-                hg.printShownWord(shownWord);
+                failedAttempt();
+                printShownWord();
             }
         }
-        hg.checkWin(win, answer);
+        checkWin(win, answer);
     }
 
     private void checkWin(boolean win, String answer) {
@@ -45,17 +45,13 @@ class Hangman {
         }
     }
 
-    private String wordLength(String answer) {
-        String shownWord = "";
-
+    private void wordLength() {
         for (int i = 0; i < answer.length(); i++) {
             shownWord = shownWord + "_";
         }
-
-        return shownWord;
     }
 
-    private void printShownWord(String shownWord) {
+    private void printShownWord() {
         char[] shownWordChar = shownWord.toCharArray();
 
         for (int i = 0; i < shownWord.length(); i++) {
@@ -64,29 +60,28 @@ class Hangman {
         System.out.println("\n");
     }
 
-    private String correctGuess(String answer, char guess, String shownWord) {
+    private void correctGuess() {
         char[] shownWordChar = shownWord.toCharArray();
         char[] answerChar = answer.toCharArray();
 
         for (int i = 0; i < answer.length(); i++) {
-            if (answerChar[i] == guess) {
-                shownWordChar[i] = guess;
+            if (answerChar[i] == yourGuess) {
+                shownWordChar[i] = yourGuess;
             }
         }
 
-        return String.valueOf(shownWordChar);
+        shownWord = String.valueOf(shownWordChar);
     }
 
-    private void failedAttempt(int wrongAnswrs) {
-        Stickfigures sf = new Stickfigures();
-        sf.stickfigures(wrongAnswrs);
+    private void failedAttempt() {
+        new Stickfigures(wrongAnswers);
 
-        if (wrongAnswrs < 5) {
-            System.out.println("Rossz tipp. Meg " + (5 - wrongAnswrs) + "x tippelhetsz rosszul.");
+        if (wrongAnswers < 5) {
+            System.out.println("Rossz tipp. Meg " + (5 - wrongAnswers) + "x tippelhetsz rosszul.");
         }
     }
 
-    private char inputGuess() {
+    private void inputGuess() {
         System.out.print("Irj be egy betut: ");
 
         Scanner sc = new Scanner(System.in);
@@ -99,11 +94,10 @@ class Hangman {
             ans = sc.nextLine();
             isChar = ans.matches("[a-zA-z]{1}");
         }
-
-        return ans.toUpperCase().charAt(0);
+        yourGuess = ans.toUpperCase().charAt(0);
     }
 
-    private String randomWord() {
+    private void randomWord() {
         String words[] = {"hello",
                 "cat",
                 "dog",
@@ -127,6 +121,6 @@ class Hangman {
         Random rand = new Random();
         String word = words[rand.nextInt(words.length)];
 
-        return word.toUpperCase();
+        answer = word.toUpperCase();
     }
 }

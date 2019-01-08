@@ -3,24 +3,19 @@ package com.example.main;
 import java.util.Scanner;
 
 class Average {
-    private Scanner input = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
+    private int number, array[], sum = 0;
 
-    void average() {
-        Average avg = new Average();
-
-        int number = avg.inputNumber();
-
-        int array[] = new int[number];
-        avg.inputArray(array, number);
-
-        int sum = avg.arraySum(array, number);
+    Average() {
+        inputNumber();
+        array = new int[number];
+        inputArray();
+        arraySum();
 
         System.out.println("\nA tomb elemeinek atlaga: " + (float) sum / number);
     }
 
-    private int inputNumber() {
-        Scanner sc = new Scanner(System.in);
-        int number;
+    private void inputNumber() {
         System.out.print("Tomb elemeinek szama: ");
 
         while (true) {
@@ -31,17 +26,16 @@ class Average {
                 System.out.print("Szamot irj: ");
             }
         }
-        return number;
     }
 
-    private void inputArray(int array[], int number) {
+    private void inputArray() {
         System.out.println("Tomb elemei:");
         for (int i = 0; i < number; i++) {
             System.out.print(i + ". ");
 
             while (true) {
                 try {
-                    array[i] = Integer.parseInt(input.nextLine());
+                    array[i] = Integer.parseInt(sc.nextLine());
                     break;
                 } catch (NumberFormatException nfe) {
                     System.out.print("Szamot irj: ");
@@ -50,11 +44,9 @@ class Average {
         }
     }
 
-    private int arraySum(int array[], int number) {
-        int sum = 0;
+    private void arraySum() {
         for (int i = 0; i < number; i++) {
             sum = sum + array[i];
         }
-        return sum;
     }
 }

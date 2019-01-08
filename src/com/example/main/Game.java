@@ -4,19 +4,19 @@ import java.util.Random;
 import java.util.Scanner;
 
 class Game {
-    void game() {
-        Game game = new Game();
-        Random rand = new Random();
+    private Random rand = new Random();
 
-        int randomNumber = rand.nextInt(99) + 1;
-        int lives = 5, yourGuess;
-        boolean win = false;
+    private int randomNumber = rand.nextInt(99) + 1;
+    private int lives = 5, yourGuess;
+    private boolean win = false;
 
+
+    Game() {
         System.out.println("\nTalald ki milyen szamra gondoltam 1 es 100 kozott! 5 eleted van.\n");
 
         while (lives != 0 && !win) {
-            yourGuess = game.inputGuess();
-            win = game.checkWin(yourGuess, randomNumber);
+            inputGuess();
+            checkWin();
 
             if (!win) {
                 lives--;
@@ -31,10 +31,10 @@ class Game {
         }
     }
 
-    private int inputGuess() {
+    private void inputGuess() {
         Scanner sc = new Scanner(System.in);
-        int yourGuess;
         System.out.print("Tipped: ");
+
         while (true) {
             try {
                 yourGuess = Integer.parseInt(sc.nextLine());
@@ -43,19 +43,20 @@ class Game {
                 System.out.print("Szamot irj: ");
             }
         }
-        return yourGuess;
     }
 
-    private boolean checkWin(int m, int n) {
-        if (m == n) {
+    private void checkWin() {
+        if (yourGuess == randomNumber) {
             System.out.println("\nNYERTEEL!");
-            return true;
-        } else if (m < n) {
-            System.out.println("Probalj egy NAGYOBB szamot.");
+            win = true;
         } else {
-            System.out.println("Probalj egy KISEBB szamot.");
+            win = false;
+            if (yourGuess < randomNumber) {
+                System.out.println("Probalj egy NAGYOBB szamot.");
+            } else {
+                System.out.println("Probalj egy KISEBB szamot.");
+            }
         }
-        return false;
     }
 }
 
